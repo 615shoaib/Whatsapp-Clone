@@ -1,13 +1,14 @@
-import axious from 'axious'
+import axios from 'axios'
 
 
-
- const addUser=async(add)=>{
+ const URL="http://localhost:8000/"
+ const addUser=async(data)=>{
+   
     try{
-        await axious.get(URL,add)
+       await axios(URL,data)
 
     }catch(error){
-        console.log("Api is not workin successful",error,message)
+        console.log("Api is not workin successful",error.message)
     }   
 }
 
