@@ -8,9 +8,9 @@ const Menu=()=>{
         <>
         <Box>
             <Header />
-           
+           <Search />
         </Box>
-         <Search />
+         
         </>
     )
 }

@@ -6,6 +6,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SettingsInputSvideoIcon from '@mui/icons-material/SettingsInputSvideo';
 import {GoogleLogin} from '@react-oauth/google' 
 import jwt_decode from 'jwt-decode'
+import addUser from "../../services/api";
+
 const dialogStyled = {
     height: '96%',
     marginTop: '12%',
@@ -63,9 +65,10 @@ const Checkbox = styled(Input)`
 const Message = () => {
 
     const { setAccount }=useContext(Accountcontext)
-    const OnLoginSuccess=(req)=>{
+    const OnLoginSuccess=async(req)=>{
        const decoded=jwt_decode(req.credential);
       setAccount(decoded);
+      await addUser(decoded)
    }
 
    const OnLoginError=(req)=>{

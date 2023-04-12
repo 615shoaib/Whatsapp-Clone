@@ -1,11 +1,15 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
-import { Accountcontext } from "../../../Context/Appprovider"
 import { Box,styled } from "@mui/material"
 import {Chat as MessageIcon } from "@mui/icons-material"
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 
+
+import { Accountcontext } from "../../../Context/Appprovider"
+
+// Components 
+import HeaderMenu from "./HeaderMenu/HeaderMenu";
+import InfoDrawer from "../../Drawer/InfoDrawer";
 const Component=styled(Box)`
     height:44px;
     background:#ededed;
@@ -35,15 +39,21 @@ const Component=styled(Box)`
 `
 const Header=()=>{
     const {account}=useContext(Accountcontext)
+    const [openDrawer,setOpenDrawer]=useState(false)
+
+    const toggleDrawer=()=>{
+        setOpenDrawer(true)
+    }
     return(
         <>
         <Component>
-            <Images title="profile" src={account.picture} alt="dp" />
+            <Images title="profile" src={account.picture} alt="dp" onClick={()=>toggleDrawer()} />
             <Wrapper>
                 <MessageIcon titleAccess="Chat" />
-                <MoreVertIcon titleAccess="More option" /> 
+                <HeaderMenu setOpenDrawer={setOpenDrawer} /> 
             </Wrapper>
         </Component>
+        <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} />
         </>
     )
 }
